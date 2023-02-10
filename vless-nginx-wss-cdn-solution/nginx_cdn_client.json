@@ -1,0 +1,43 @@
+{
+    "log": {
+        "loglevel": "debug"
+    },
+    "inbounds": [
+        {
+            "port": 10800,
+            "listen": "127.0.0.1",
+            "protocol": "socks",
+            "settings": {
+                "auth": "noauth",
+                "udp": true
+            }
+        }
+    ],
+    "outbounds": [
+        {
+            "protocol": "vless",
+            "settings": {
+                "vnext": [
+                    {
+                        "address": "", // Your VPS domain name or IP address
+                        "port": 443,
+                        "users": [
+                            {
+                                "id": "", // UUID
+                                "encryption": "none",
+                                "level": 0
+                            }
+                        ]
+                    }
+                ]
+            },
+            "streamSettings": {
+                "network": "ws",
+                "security": "tls",
+                "wsSettings": {
+                    "path": "/websocket" // Your websocket path
+                }
+            }
+        }
+    ]
+}
